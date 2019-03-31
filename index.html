@@ -1,0 +1,37 @@
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API INT</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .table tbody td::first-letter{text-transform: uppercase}
+    </style>
+</head>
+
+<body>
+   <div class="container mt-4" ng-controller="firstCtrl">
+     <h1>{{title}}</h1>
+     <p><input type="text" class="form-control" ng-model="query"></p>
+     <table class="table table-bordered">
+       <thead>
+         <tr>
+           <th ng-repeat="field in fields" ng-click="sort(field)">{{field | label}}</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr ng-repeat = "d in data | filter : query | orderBy : sort.field : sort.order">
+           <td ng-repeat = "field in fields">{{d[field]}}</td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
